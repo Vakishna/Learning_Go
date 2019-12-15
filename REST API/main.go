@@ -1,29 +1,28 @@
 package main
 
 import (
-  "fmt"
-  "encoding/json"
-  "log"
+  //"encoding/json"
+  //"log"
   "net/http"
-  "math/rand"
-  "strconv"
+  //"math/rand"
+  //"strconv"
   "github.com/gorilla/mux"
 )
 
 // Book Struct (Model)
 type Book struct {
-  ID  string 'json:"id"'
-  Isbn  string 'json:"isbn"'
-  Title  string 'json:"title"'
+  ID  string `json:"id"`
+  Isbn  string `json:"isbn"`
+  Title  string `json:"title"`
   // The * implies own type (Author) **see struct below**
-  Author  *Author 'json:"author"'
+  Author  *Author `json:"author"`
 }
 
 
 // Author Struct (Model)
 type Author struct {
-  FirstName string 'json:"firstname"'
-  LastName  string 'json:"lastname"'
+  FirstName string `json:"firstname"`
+  LastName  string `json:"lastname"`
 }
 
 
