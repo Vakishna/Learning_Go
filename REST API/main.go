@@ -2,7 +2,7 @@ package main
 
 import (
   "encoding/json"
-  //"log"
+  "log"
   "net/http"
   //"math/rand"
   //"strconv"
@@ -27,21 +27,28 @@ type Author struct {
 
 var books []Book
 
-
-
 // Get ALL Books
 func getBooks(w http.ResponseWriter, r *http.Request) {
   w.Header().Set("Content-Type", "application/json")
   json.NewEncoder(w).Encode(books)
+
 }
 
 // Get Book
 func getBook(w http.ResponseWriter, r *http.Request) {
-
+  w.Header().Set("Content-Type", "application/json")
+  params  := mux.Vars(r) // Get Parms
+  for _, item := range books {
+    if item.ID == params["id"] {
+      json.NewEncoder(w).Encode(item)
+      return
+    }
+  }
+  json.NewEncoder(w).Encode(&Book{})
 }
 
-// Create Book
-func createBook(w http.ResponseWriter, r *http.Request) {
+ func createBook(w http.ResponseWriter, r *http.Request) {
+  w.Header().Set("Content-Type", "application/json")
 
 }
 
@@ -75,14 +82,8 @@ func main() {
   r.HandleFunc("/api/book", createBook).Methods("POST")
   r.HandleFunc("/api/book/{id}", updateBook).Methods("PUT")
   r.HandleFunc("/api/book/{id}", deleteBook).Methods("DELETE")
-
-
   // Run the server
-  http.ListenAndServe(":8080", r);
-
-
-
-
+  log.Fatal(http.ListenAndServe(":8081", r));
 
 
 }
