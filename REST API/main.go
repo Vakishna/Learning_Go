@@ -29,9 +29,8 @@ type Author struct {
 
 // Get ALL Books
 func getBooks(w http.ResponseWriter, r *http.Request) {
-  
-}
 
+}
 
 // Get Book
 func getBook(w http.ResponseWriter, r *http.Request) {
@@ -63,8 +62,8 @@ func main() {
   // Route Handlers / Endpoints
   r.HandleFunc("/api/books", getBooks).Methods("GET")
   r.HandleFunc("/api/book/{id}", getBook).Methods("GET")
-  r.HandleFunc("/api/books", createBook).Methods("POST")
-  r.HandleFunc("/api/books/{id}", updateBook).Methods("PUT")
+  r.HandleFunc("/api/book", createBook).Methods("POST")
+  r.HandleFunc("/api/book/{id}", updateBook).Methods("PUT")
   r.HandleFunc("/api/book/{id}", deleteBook).Methods("DELETE")
 
 
