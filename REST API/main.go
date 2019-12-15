@@ -2,7 +2,7 @@ package main
 
 import (
   "encoding/json"
-  "log"
+  //"log"
   "net/http"
   //"math/rand"
   //"strconv"
@@ -78,7 +78,7 @@ func main() {
 
 
   // Run the server
-  logWrite(http.ListenAndServe(":8080", r));
+  http.ListenAndServe(":8080", r);
 
 
 
