@@ -2,7 +2,10 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
+
+	"github.com/codegangsta/negroni"
 
 	"github.com/gorilla/mux"
 	"github.com/vakishna/go_crash_course/AuthApp/routes/callback"
@@ -20,5 +23,10 @@ func main() {
 		negroni.HandlerFunc(middlewares.IsAuthenticated),
 		negroni.Wrap(http.HandlerFunc(user.UserHandler)),
 	))
+	r.PathPrefix("/public/").Handler(http.StripPrefix("/public/", http.FileServer(http.Dir("public/"))))
+	http.Handle("/", r)
+	log.Print("Server listen")
+	log.Fatal(http.ListenAndServe(":3000", nil))
+
 	fmt.Println("Initialied Application :")
 }
