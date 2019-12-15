@@ -11,10 +11,47 @@ import (
 )
 
 // Book Struct (Model)
+type Book struct {
+  ID  string 'json:"id"'
+  Isbn  string 'json:"isbn"'
+  Title  string 'json:"title"'
+  // The * implies own type (Author) **see struct below**
+  Author  *Author 'json:"author"'
+}
 
 
+// Author Struct (Model)
+type Author struct {
+  FirstName string 'json:"firstname"'
+  LastName  string 'json:"lastname"'
+}
 
 
+// Get ALL Books
+func getBooks(w http.ResponseWriter, r *http.Request) {
+  
+}
+
+
+// Get Book
+func getBook(w http.ResponseWriter, r *http.Request) {
+
+}
+
+// Create Book
+func createBook(w http.ResponseWriter, r *http.Request) {
+
+}
+
+// Update Book
+func updateBook(w http.ResponseWriter, r *http.Request) {
+
+}
+
+// Delete Book
+func deleteBook(w http.ResponseWriter, r *http.Request) {
+
+}
 
 
 func main() {
