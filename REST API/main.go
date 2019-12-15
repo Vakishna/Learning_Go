@@ -1,20 +1,18 @@
 package main
 
-
-import("fmt")
 import (
+  "fmt"
   "encoding/json"
   "log"
   "net/http"
   "math/rand"
   "strconv"
-  "mi"
 )
 
 
 func main() {
 
-
+  fmt.Println("Hello World")
 
 
 
