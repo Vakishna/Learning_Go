@@ -1,8 +1,8 @@
 package main
 
 import (
-  //"encoding/json"
-  //"log"
+  "encoding/json"
+  "log"
   "net/http"
   //"math/rand"
   //"strconv"
@@ -25,10 +25,14 @@ type Author struct {
   LastName  string `json:"lastname"`
 }
 
+var books []Book
+
+
 
 // Get ALL Books
 func getBooks(w http.ResponseWriter, r *http.Request) {
-
+  w.Header().Set("Content-Type", "application/json")
+  json.NewEncoder(w).Encode(books)
 }
 
 // Get Book
@@ -58,6 +62,13 @@ func main() {
   // := is the type inference for GoLang
   r := mux.NewRouter()
 
+  books = append(books, Book{ID: "1", Isbn: "44732901", Title: "Book One", Author: &Author {FirstName: "John", LastName: "Smith"}})
+
+  books = append(books, Book{ID: "2", Isbn: "442232901", Title: "Book Two", Author: &Author {FirstName: "Vakishna", LastName: "Thayalan"}})
+
+
+
+
   // Route Handlers / Endpoints
   r.HandleFunc("/api/books", getBooks).Methods("GET")
   r.HandleFunc("/api/book/{id}", getBook).Methods("GET")
@@ -67,7 +78,7 @@ func main() {
 
 
   // Run the server
-  http.ListenAndServe(":8080", r)
+  logWrite(http.ListenAndServe(":8080", r));
 
 
 
